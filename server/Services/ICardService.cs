@@ -4,5 +4,9 @@ namespace CardboardArchivistAPI.Services;
 
 public interface ICardService
 {
-    public List<Card> GetCards();
+    public string? Create(Card card);
+    public bool Delete(string UUID);
+    public Card? Get(string UUID);
+    public List<Card> GetAll();
+    public void Update(Card card);
 }
