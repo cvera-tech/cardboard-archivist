@@ -34,4 +34,6 @@ app.MapDelete("/card/{uuid}", (string uuid, ICardService cardService) =>
     return Results.BadRequest();
 });
 
+app.MapPut("/card", (Card card, ICardService cardService) => cardService.Update(card));
+
 app.Run();
