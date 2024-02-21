@@ -1,2 +1,10 @@
+# Node project directories
 build/
 node_modules/
+
+# File
+*.sqlite
+
+# .NET output & compilation directories
+[Bb]in/
+[Oo]bj/
