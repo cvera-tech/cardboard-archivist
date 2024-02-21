@@ -1,4 +1,3 @@
-using CardboardArchivistAPI.Models.Collection;
 using CardboardArchivistAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,21 +20,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-// app.MapGet("/card", (ICardService cardService) => cardService.GetAll());
-
-// app.MapGet("/card/{uuid}", (string uuid, ICardService cardService) => cardService.Get(uuid));
-
-// app.MapPost("/card", (Card card, ICardService cardService) => cardService.Create(card));
-
-// app.MapDelete("/card/{uuid}", (string uuid, ICardService cardService) => 
-// {
-//     if(cardService.Delete(uuid))
-//         return Results.NoContent();
-//     return Results.BadRequest();
-// });
-
-// app.MapPut("/card", (Card card, ICardService cardService) => cardService.Update(card));
 
 app.MapControllers();
 
