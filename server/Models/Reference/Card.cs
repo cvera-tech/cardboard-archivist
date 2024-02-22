@@ -3,12 +3,12 @@ namespace CardboardArchivistApi.Models.Reference;
 
 public class Card
 {
-    public string CollectorNumber { get; set; }
-    public string FoilType { get; set; }
-    public string Language { get; set; }
-    public string Name { get; set; }
-    public string ScryfallApiUri { get; set; }
-    public Guid ScryfallId { get; set; }
-    public string ScryfallUri { get; set; }
-    public Set Set { get; set; }
+    public required string CollectorNumber { get; set; }
+    public required string FoilType { get; set; }
+    public required string Language { get; set; }
+    public required string Name { get; set; }
+    public required string ScryfallApiUri { get; set; }
+    public required Guid ScryfallId { get; set; }
+    public required string ScryfallUri { get; set; }
+    public required Set Set { get; set; }
 }

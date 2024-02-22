@@ -2,9 +2,9 @@ namespace CardboardArchivistApi.Models.Reference;
 
 public class Set
 {
-    public string Code { get; set; }
-    public string Name { get; set; }
-    public Guid ScryfallId { get; set; }
-    public string ScryfallApiUri { get; set; }
-    public string ScryfallUri { get; set; }
+    public required string Code { get; set; }
+    public required string Name { get; set; }
+    public required Guid ScryfallId { get; set; }
+    public required string ScryfallApiUri { get; set; }
+    public required string ScryfallUri { get; set; }
 }

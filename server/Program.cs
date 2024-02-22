@@ -1,4 +1,4 @@
-using CardboardArchivistAPI.Services;
+using CardboardArchivistApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

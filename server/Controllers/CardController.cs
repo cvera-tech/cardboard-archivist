@@ -1,8 +1,8 @@
-using CardboardArchivistAPI.Models.Collection;
-using CardboardArchivistAPI.Services;
+using CardboardArchivistApi.Models.Collection;
+using CardboardArchivistApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CardboardArchivistAPI.Controllers;
+namespace CardboardArchivistApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
