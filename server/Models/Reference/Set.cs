@@ -1,4 +1,4 @@
-namespace CardboardArchivistAPI.Models.Reference;
+namespace CardboardArchivistApi.Models.Reference;
 
 public class Set
 {
