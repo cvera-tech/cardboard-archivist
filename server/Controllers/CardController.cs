@@ -6,14 +6,20 @@ namespace CardboardArchivistApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class CardController(ICardService cardService) : ControllerBase
+public class CardController(ICardService cardService, IReferenceService referenceService) : ControllerBase
 {
     private readonly ICardService _cardService = cardService;
+    private readonly IReferenceService _referenceService = referenceService;
 
     [HttpPost]
-    public ActionResult<string?> Add(Card card) 
+    public ActionResult<string?> Add(AddCard card) 
     {
-        string? newCardId = _cardService.Create(card);
+        Card newCard = new()
+        {
+            ReferenceId = new Guid(card.ReferenceId),
+            DeckId = !string.IsNullOrEmpty(card.DeckId) ? new Guid(card.DeckId) : null,
+        };
+        string? newCardId = _cardService.Create(newCard);
         if (newCardId is null)
             return BadRequest();
         string newCardUri = GetUri(newCardId);
@@ -53,9 +59,9 @@ public class CardController(ICardService cardService) : ControllerBase
         // if (_deckService.Get(card.DeckId) is null)
         //  return BadRequest(new { msg = "Invalid Deck ID" });
         _cardService.Update(new Card() {
-            UUID = id,
-            ReferenceUUID = card.ReferenceUUID,
-            DeckUUID = card.DeckUUID
+            Id = id,
+            ReferenceId = card.ReferenceId,
+            DeckId = card.DeckId
         });
         return Ok();
     }
