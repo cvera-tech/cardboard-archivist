@@ -5,6 +5,7 @@ public class Card
 {
     public required string CollectorNumber { get; set; }
     public required string FoilType { get; set; }
+    public required Guid Id { get; set; }
     public required string Language { get; set; }
     public required string Name { get; set; }
     //public required string ScryfallApiUri { get; set; }
