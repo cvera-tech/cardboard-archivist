@@ -19,4 +19,11 @@ public class ReferenceController(IReferenceService referenceService) : Controlle
             return NotFound();
         return Ok(card);
     }
+
+    [HttpPost]
+    [Route("search")]
+    public ActionResult<List<Card>> SearchCards(SearchCards searchCards)
+    {
+        return Ok(_referenceService.SearchCards(searchCards));
+    }
 }

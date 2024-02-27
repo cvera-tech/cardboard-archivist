@@ -52,10 +52,14 @@ public class InMemoryReferenceService : IReferenceService
     {
         return Cards.Where(card => 
         {
-            bool nameMatch = !String.IsNullOrWhiteSpace(searchCards.Name) && card.Name == searchCards.Name;
-            bool setCodeMatch = !String.IsNullOrWhiteSpace(searchCards.SetCode) && card.SetCode == searchCards.SetCode;
-            bool collectorNumberMatch = !String.IsNullOrWhiteSpace(searchCards.CollectorNumber) && card.CollectorNumber == searchCards.CollectorNumber;
-            return nameMatch && setCodeMatch && collectorNumberMatch;
+            bool match = true;
+            if (!String.IsNullOrWhiteSpace(searchCards.Name))
+                match = match && card.Name == searchCards.Name;
+            if (!String.IsNullOrWhiteSpace(searchCards.SetCode))
+                match = match && card.SetCode == searchCards.SetCode;
+            if (!String.IsNullOrWhiteSpace(searchCards.CollectorNumber))
+                match = card.CollectorNumber == searchCards.CollectorNumber;
+            return match;
             
         }).ToList();
     }
