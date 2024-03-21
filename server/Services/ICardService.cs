@@ -1,6 +1,6 @@
-using CardboardArchivistAPI.Models.Collection;
+using CardboardArchivistApi.Models.Collection;
 
-namespace CardboardArchivistAPI.Services;
+namespace CardboardArchivistApi.Services;
 
 public interface ICardService
 {

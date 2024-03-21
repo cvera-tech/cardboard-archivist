@@ -1,4 +1,4 @@
-namespace CardboardArchivistAPI.Services;
+namespace CardboardArchivistApi.Services;
 
 public interface IDatabase
 {

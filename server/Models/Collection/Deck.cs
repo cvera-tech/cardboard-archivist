@@ -1,4 +1,4 @@
-namespace CardboardArchivistAPI.Models.Collection;
+namespace CardboardArchivistApi.Models.Collection;
 
 public class Deck
 {

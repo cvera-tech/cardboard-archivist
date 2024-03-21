@@ -1,6 +1,6 @@
-using CardboardArchivistAPI.Models.Collection;
+using CardboardArchivistApi.Models.Collection;
 
-namespace CardboardArchivistAPI.Services;
+namespace CardboardArchivistApi.Services;
 
 public class InMemoryCardService : ICardService
 {
@@ -8,29 +8,29 @@ public class InMemoryCardService : ICardService
     [
         new()
         {
-            UUID = "card-uuid-1",
-            ReferenceUUID = "reference-uuid-1",
-            DeckUUID = "deck-uuid-1"
+            Id = "card-uuid-1",
+            ReferenceId = new Guid("00000000-0000-0000-0001-000000000001"),
+            DeckId = new Guid("00000000-0000-0000-0002-000000000001")
         },
         new()
         {
-            UUID = "card-uuid-2",
-            ReferenceUUID = "reference-uuid-1"
+            Id = "card-uuid-2",
+            ReferenceId = new Guid("00000000-0000-0000-0001-000000000002")
         },
         new()
         {
-            UUID = "card-uuid-3",
-            ReferenceUUID = "reference-uuid-2",
-            DeckUUID = "deck-uuid-2"
+            Id = "card-uuid-3",
+            ReferenceId = new Guid("00000000-0000-0000-0001-000000000003"),
+            DeckId = new Guid("00000000-0000-0000-0002-000000000001")
         }
     ];
     private static int uuidCounter = 4;
 
     public string? Create(Card card)
     {
-        card.UUID = $"card-uuid-{uuidCounter++}";
+        card.Id = $"card-uuid-{uuidCounter++}";
         Cards.Add(card);
-        return card.UUID;
+        return card.Id;
     }
     
     public bool Delete(string UUID)
@@ -42,18 +42,18 @@ public class InMemoryCardService : ICardService
         return true;
     }
     
-    public Card? Get(string UUID) => Cards.FirstOrDefault(card => card.UUID!.Equals(UUID));
+    public Card? Get(string UUID) => Cards.FirstOrDefault(card => card.Id!.Equals(UUID));
 
-    private int GetIndex(string UUID) => Cards.FindIndex(card => card.UUID!.Equals(UUID));
+    private int GetIndex(string UUID) => Cards.FindIndex(card => card.Id!.Equals(UUID));
 
     public List<Card> GetAll() => Cards;
 
     public void Update(Card card)
     {
-        if (card.UUID is null)
+        if (card.Id is null)
             // TODO: Perhaps throw and handle an exception here?
             return;
-        int cardToUpdateIndex = GetIndex(card.UUID!);
+        int cardToUpdateIndex = GetIndex(card.Id!);
         if (cardToUpdateIndex < 0)
             return;
         Cards[cardToUpdateIndex] = card;
