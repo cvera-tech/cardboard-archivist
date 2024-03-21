@@ -1,3 +1,4 @@
+using System.Reflection;
 using CardboardArchivistApi.Models.Reference;
 
 namespace CardboardArchivistApi.Services;
@@ -50,15 +51,36 @@ public class InMemoryReferenceService : IReferenceService
 
     public List<Card> SearchCards(SearchCards searchCards)
     {
+        List<(string, string)> searchOptions = [];
+        
+        foreach(PropertyInfo propertyInfo in searchCards.GetType().GetProperties())
+        {
+            var propertyValue = propertyInfo.GetValue(searchCards);
+            if (propertyValue is not null)
+            {
+                (string, string) searchOption = (propertyInfo.Name, propertyValue.ToString()!);
+                Console.WriteLine(searchOption);
+                searchOptions.Add(searchOption);
+            }
+        }
+        if (searchOptions.Count == 0)
+            return Cards;
         return Cards.Where(card => 
         {
             bool match = true;
-            if (!String.IsNullOrWhiteSpace(searchCards.Name))
-                match = match && card.Name == searchCards.Name;
-            if (!String.IsNullOrWhiteSpace(searchCards.SetCode))
-                match = match && card.SetCode == searchCards.SetCode;
-            if (!String.IsNullOrWhiteSpace(searchCards.CollectorNumber))
-                match = card.CollectorNumber == searchCards.CollectorNumber;
+            // if (!String.IsNullOrWhiteSpace(searchCards.Name))
+            //     match = match && card.Name == searchCards.Name;
+            // if (!String.IsNullOrWhiteSpace(searchCards.SetCode))
+            //     match = match && card.SetCode == searchCards.SetCode;
+            // if (!String.IsNullOrWhiteSpace(searchCards.CollectorNumber))
+            //     match = card.CollectorNumber == searchCards.CollectorNumber;
+            foreach((string, string) searchOption in searchOptions)
+            {
+                string? cardValue = card.GetType().GetProperty(searchOption.Item1)?.GetValue(card)?.ToString();
+                Console.WriteLine(cardValue);
+                if (cardValue is not null)
+                    match = match && cardValue == searchOption.Item2;
+            }
             return match;
             
         }).ToList();
