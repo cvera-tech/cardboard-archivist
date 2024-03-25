@@ -2,6 +2,7 @@ namespace CardboardArchivistApi.Models.Collection;
 
 public class Deck
 {
-    public required string UUID { get; set; }
-    public required Card[] Cards { get; set; }
+    public required List<Card> Cards { get; set; }
+    public string? Id { get; set; }
+    public required string Name { get; set; }
 }

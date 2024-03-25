@@ -13,6 +13,7 @@ builder.Services.AddSwaggerGen(config =>
 
 builder.Services.AddScoped<ICardService, InMemoryCardService>();
 builder.Services.AddScoped<IReferenceService, InMemoryReferenceService>();
+builder.Services.AddScoped<IDeckService, InMemoryDeckService>();
 
 var app = builder.Build();
 
